@@ -47,6 +47,19 @@ app.get('/sumlist/:nums', function(req, res){
   res.render('sumlist', {nums:nums, sum:sum, even:req.query.even, odd:req.query.odd});
 });
 
+app.get('/rolldice/:num', function(req, res){
+  var num = req.params.num * 1;
+  var rolls = [];
+  var sum = 0;
+  for(var i = 0; i < num; i++){
+    var roll = Math.floor(Math.random() * 6) + 1;
+    rolls.push(roll);
+    sum += roll;
+  }
+
+  res.render('dice', {rolls:rolls, sum:sum});
+});
+
 var port = process.env.PORT;
 
 app.listen(port, function(){
